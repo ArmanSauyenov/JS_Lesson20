@@ -1,0 +1,95 @@
+﻿<!--1. Практика
+    Сделать форму с полями Имя, Фамилия, Возраст, Пол. Пол - select. Кнопку submit.
+    По нажатию на submit, форма не должна отправляться, должен вызываться метод, который
+    все данные кладет в textarea в виде одной строки "Фамилия, Имя, Пол".
+    По каждому нажатию в textarea добавляется новая строка, а введенные данные в input полях обнуляются.
+
+2. Сделать три дива друг на друге. Во внутреннем диве вывести сообщение о том, на какой див последний кликнули. При клике на внутренний должна вывестись только информация о внутреннем диве.
+
+3. Сделать поле ввода, кнопку и див. В диве изначально вывести "0". В поле ввода можно ввести число. По нажатию на кнопку введенное число в поле ввода добавляется к значению в диве и выводится в нем. Поле ввода очищается после добавления.
+    + Сделать 3 кнопки, которые прибавляют заранее заданные значения - 5, 15, 50.-->
+
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #ta123{
+            width:300px;
+            height: 100px;
+        }
+
+        hr {
+            margin: 30px;
+        }
+
+        .block1 {
+            background-color: deepskyblue;
+            border: 1px;
+            width: 300px;
+            height: 300px;
+        }
+
+        .block2 {
+            background-color: beige;
+            border: 1px;
+            width: 200px;
+            height: 200px;
+        }
+
+        .block3 {
+            background-color: aliceblue;
+            border: 1px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!--1)-->
+    <div id="app123">
+        <input v-model="word1" type="text" placeholder="name" />
+        <input v-model="word2" type="text" placeholder="surname" />
+        <input v-model="word3" type="text" placeholder="age" />
+
+        <div>
+            <select v-model="selected1">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
+
+        <textarea id="ta123">{{wordtotal}}</textarea>
+        <button v-on:click="showonTA">Submit</button>
+    </div>
+
+    <!--2)-->
+    <div id="app345">
+        <h3>Модификатор capture меняет порядок выполнения события. Метод с модификатором capture выполнится первым</h3>
+        <div class="block1" @click.stop="divParentParentClick">
+            <div class="block2" @click.stop="divParentClick">
+                <div class="block3" @click.stop="divClick">
+                    {{message}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--3)-->
+    <div id="app567">
+        <h3>Пишем вызов нашего метода с параметром</h3>
+        <button v-on:click="increment(-5)">Минус 5</button>
+        <button v-on:click="increment(15)">Плюс 15</button>
+        <button v-on:click="increment(50)">Плюс 50</button>
+        <input v-model="number" type="text" />
+        <button v-on:click="increment(number)">Input Button</button>
+        <p>Кнопка выше была нажата {{counter}} раз</p>
+    </div>
+
+    <script src="vue.js"></script>
+    <script src="JavaScript1.js"></script>
+</body>
+</html>
